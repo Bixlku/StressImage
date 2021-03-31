@@ -6,17 +6,18 @@ import graham_scan
 
 for i in range(3,9):
     filename = 'step'+i.__str__()
-    start = 8
-    end = 200
 
-    fin = open("source/1.无空洞/"+filename+'.dat', 'r')
+    start = 8
+    end = 204
+    R=3
+    fin = open("source/3.老方法/"+filename+'.dat', 'r')
     a = fin.readlines()
-    fout = open("source/1.无空洞/"+filename+'1.dat', 'w')
+    fout = open("source/3.老方法/"+filename+'1.dat', 'w')
     b = ''.join(a[start:end])
     fout.write(b)
 
-    pt = np.loadtxt("source/1.无空洞/"+filename+'1.dat', skiprows=0,delimiter=" ",usecols=(1,2,3)) #numpy
-    pts = np.loadtxt("source/1.无空洞/"+filename+'1.dat', skiprows=0,delimiter=" ",usecols=(1,2)) #numpy
+    pt = np.loadtxt("source/3.老方法/"+filename+'1.dat', skiprows=0,delimiter=" ",usecols=(1,2,3)) #numpy
+    pts = np.loadtxt("source/3.老方法/"+filename+'1.dat', skiprows=0,delimiter=" ",usecols=(1,2)) #numpy
     x=1          #x=0则是内部，x=1则是外部
     pt[:,2]= pt[:,2]/1000000
 
@@ -75,6 +76,7 @@ for i in range(3,9):
             sortouter[len(outernum)-s]=outer[i]
 
     outerpoint=np.empty([len(outernum),2])
+
     #np.savetxt('sortouter.csv',sortouter,fmt='%f',delimiter=',')
 
     count =np.arange(len(innernum))
@@ -89,24 +91,31 @@ for i in range(3,9):
             sortinner[len(innernum)-s]=inner[i]
 
     innerpoint=np.empty([len(innernum),2])
+
     #########################
 
 
     ###############  输出outside和inside点对应的应力图像的点
+
     count =np.arange(len(outernum)-2)
     for i in count :
         outerpoint[i]=CircleCenter.CircleCenter(sortouter[i],sortouter[i+1],sortouter[i+2])
+
+
 
     outerpoint[len(outernum)-2]=CircleCenter.CircleCenter(sortouter[len(outernum)-2],sortouter[len(outernum)-1],sortouter[0])
     outerpoint[len(outernum)-1]=CircleCenter.CircleCenter(sortouter[len(outernum)-1],sortouter[0],sortouter[1])
 
 
+
     count =np.arange(len(innernum)-2)
     for i in count :
         innerpoint[i]=CircleCenter.CircleCenter(sortinner[i],sortinner[i+1],sortinner[i+2])
-
     innerpoint[len(innernum)-2]=CircleCenter.CircleCenter(sortinner[len(innernum)-2],sortinner[len(innernum)-1],sortinner[0])
     innerpoint[len(innernum)-1]=CircleCenter.CircleCenter(sortinner[len(innernum)-1],sortinner[0],sortinner[1])
+
+
+
 
     outerpoint=np.append(outerpoint,[outerpoint[0]],axis=0)
     innerpoint=np.append(innerpoint,[innerpoint[0]],axis=0)
@@ -122,10 +131,10 @@ for i in range(3,9):
 
     # 绘制颜色为蓝色、宽度为 1 像素的连续曲线 y1
     font = FontProperties(fname=r"c:\windows\fonts\simsun.ttc", size=15)
-    np.savetxt("source/1.无空洞/output/inner"+filename+'.dat',innerpoint,fmt='%f',delimiter=',')
-    np.savetxt("source/1.无空洞/output/outer"+filename+'.dat',outerpoint,fmt='%f',delimiter=',')
-    np.savetxt("source/1.无空洞/output/sortinner"+filename+'.dat',sortinner,fmt='%f',delimiter=',')
-    np.savetxt("source/1.无空洞/output/sortouter"+filename+'.dat',sortouter,fmt='%f',delimiter=',')
+    np.savetxt("source/3.老方法/output/inner"+filename+'.csv',innerpoint,fmt='%f',delimiter=',')
+    np.savetxt("source/3.老方法/output/outer"+filename+'.csv',outerpoint,fmt='%f',delimiter=',')
+    np.savetxt("source/3.老方法/output/sortinner"+filename+'.csv',sortinner,fmt='%f',delimiter=',')
+    np.savetxt("source/3.老方法/output/sortouter"+filename+'.csv',sortouter,fmt='%f',delimiter=',')
 
     if x==0 :
         plt.plot(innerpoint[:,0],innerpoint[:,1], color="blue", linewidth=1.0, linestyle="-", label="stress")

@@ -15,14 +15,14 @@ for i in range(3,9):
     start = 8
     end = 204
     r=5.65
-    fin = open("source/2.新方法/"+filename+'.dat', 'r')
+    fin = open("source/3.老方法/"+filename+'.dat', 'r')
     a = fin.readlines()
-    fout = open("source/2.新方法/"+filename+'1.dat', 'w')
+    fout = open("source/3.老方法/"+filename+'1.dat', 'w')
     b = ''.join(a[start:end])
     fout.write(b)
 
-    pt = np.loadtxt("source/2.新方法/"+filename+'1.dat', skiprows=0,delimiter=" ",usecols=(1,2,3)) #numpy
-    pts = np.loadtxt("source/2.新方法/"+filename+'1.dat', skiprows=0,delimiter=" ",usecols=(1,2)) #numpy
+    pt = np.loadtxt("source/3.老方法/"+filename+'1.dat', skiprows=0,delimiter=" ",usecols=(1,2,3)) #numpy
+    pts = np.loadtxt("source/3.老方法/"+filename+'1.dat', skiprows=0,delimiter=" ",usecols=(1,2)) #numpy
     x=0        #x=0则是内部，x=1则是外部
     pt[:,2]= pt[:,2]/1000000
 
@@ -156,10 +156,10 @@ for i in range(3,9):
 
     # 绘制颜色为蓝色、宽度为 1 像素的连续曲线 y1
     font = FontProperties(fname=r"c:\windows\fonts\simsun.ttc", size=15)
-    np.savetxt("source/2.新方法/output/inner"+filename+'.csv',InnerInDraw,fmt='%f',delimiter=',')
-    np.savetxt("source/2.新方法/output/outer"+filename+'.csv',OuterInDraw,fmt='%f',delimiter=',')
-    np.savetxt("source/2.新方法/output/sortouter"+filename+'.csv',OuterPoint,fmt='%f',delimiter=',')
-    np.savetxt("source/2.新方法/output/sortinner"+filename+'.csv',InnerPoint,fmt='%f',delimiter=',')
+    np.savetxt("source/3.老方法/output/inner"+filename+'.csv',InnerInDraw,fmt='%f',delimiter=',')
+    np.savetxt("source/3.老方法/output/outer"+filename+'.csv',OuterInDraw,fmt='%f',delimiter=',')
+    np.savetxt("source/3.老方法/output/sortouter"+filename+'.csv',OuterPoint,fmt='%f',delimiter=',')
+    np.savetxt("source/3.老方法/output/sortinner"+filename+'.csv',InnerPoint,fmt='%f',delimiter=',')
 
 
 
@@ -262,10 +262,10 @@ for i in range(3,9):
 
     # 绘制颜色为蓝色、宽度为 1 像素的连续曲线 y1
     font = FontProperties(fname=r"c:\windows\fonts\simsun.ttc", size=15)
-    np.savetxt("source/2.新方法/output/inner"+filename+'.csv',innerpoint,fmt='%f',delimiter=',')
-    np.savetxt("source/2.新方法/output/outer"+filename+'.csv',outerpoint,fmt='%f',delimiter=',')
-    np.savetxt("source/2.新方法/output/sortinner"+filename+'.csv',sortinner,fmt='%f',delimiter=',')
-    np.savetxt("source/2.新方法/output/sortouter"+filename+'.csv',sortouter,fmt='%f',delimiter=',')
+    np.savetxt("source/3.老方法/output/inner"+filename+'.csv',innerpoint,fmt='%f',delimiter=',')
+    np.savetxt("source/3.老方法/output/outer"+filename+'.csv',outerpoint,fmt='%f',delimiter=',')
+    np.savetxt("source/3.老方法/output/sortinner"+filename+'.csv',sortinner,fmt='%f',delimiter=',')
+    np.savetxt("source/3.老方法/output/sortouter"+filename+'.csv',sortouter,fmt='%f',delimiter=',')
 
     plt.scatter(sortinner[:,0],sortinner[:,1], color="blue", label="stress")
     #plt.scatter(outerpoint[:,0],outerpoint[:,1], color="blue",  label="stress")

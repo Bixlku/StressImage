@@ -1,6 +1,8 @@
 import numpy as np
 import math
+import sympy
 
+''''
 def CircleCenter(p1, p2, p3):
     x1 = p1[0]
     x2 = p2[0]
@@ -24,3 +26,16 @@ def CircleCenter(p1, p2, p3):
                   y2 - p2[2] * ((y2 - y0) / math.sqrt((x2 - x0) ** 2 + (y2 - y0) ** 2))])
     R = ((p1[0] - x0) ** 2 + (p1[1] - y0) ** 2) ** 0.5
     return f
+'''
+def CircleCenter(Center,value,point):
+
+    rx=float(Center[0])
+    ry=float(Center[1])
+    px=float(point[0])
+    py=float(point[1])
+    value=float(value*-1)
+    sin = (py-ry)/math.sqrt((px-rx)**2+(py-ry)**2)
+    cos = (px - rx) / math.sqrt((px - rx) ** 2 + (py - ry) ** 2)
+
+    point=[px+cos*value,py+sin*value]
+    return point

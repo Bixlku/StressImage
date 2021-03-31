@@ -61,7 +61,10 @@ def sort_polar_angle_cos(points, center_point,bindex):
             #if语句
 
             if cos_value[index] > cos_value[index - 1] or (
-                    cos_value[index] == cos_value[index - 1] and norm_list[index] > norm_list[index - 1]):
+                     cos_value[index] == cos_value[index - 1] and norm_list[index] > norm_list[index - 1]):
+
+                #if cos_value[index] > cos_value[index - 1] or (
+                #        cos_value[index] == cos_value[index - 1] and norm_list[index] > norm_list[index - 1]):
                 ##经典排序交换
                 #交换cos_value[index]和cos_value[index-1]
                 #交换rank[index]和rank[index-1]
